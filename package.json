@@ -32,7 +32,8 @@
     "react-dom": "^18.2.0",
     "react-headless": "^0.0.1",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.26.1",
+    "react-router-dom": "^6.27.0",
+    "recharts": "^2.13.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {
