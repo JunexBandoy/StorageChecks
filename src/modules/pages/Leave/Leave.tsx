@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 // import { Files } from './Files';
 import { LeaveCreate } from './LeaveCreate';
 import { LeaveEdit } from './LeaveEdit';
+import ExportToPdf from './LeavePDF';
 
 import { ActionButton } from '@components/Buttons/ActionButton';
-import { LeaveDocs } from '@components/Docs/LeaveDocs';
 import { Modal } from '@components/forms/Modal';
 import { ModalDocs } from '@components/forms/ModalDocs';
 import { Titleheader } from '@components/MenuTitle';
@@ -72,7 +72,7 @@ export const Leave = () => {
 
   return (
     <>
-      <div className="positive">
+      <div className="relative">
         <Titleheader label="Employee" />
         <div className="flex justify-end p-4 font-sans">
           <div className="relative pb-2">
@@ -84,7 +84,10 @@ export const Leave = () => {
             </button>
           </div>
           {isOpen && (
-            <div className="w-full h-full mt-10 absolute z-20 text-white">
+            <div
+              onClick={() => setIsOpen(false)}
+              className="w-[98%]  h-full mt-10 absolute z-20 text-white backdrop-blur-sm bg-white bg-opacity-10"
+            >
               <div className="flex justify-end p-2">
                 <button
                   className="p-2 bg-[#3C8DBC]  border rounded-md w-[320px]"
@@ -148,8 +151,8 @@ export const Leave = () => {
             </div>
           )}
         </div>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
-          <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+        <div className="relative  shadow-md sm:rounded-lg p-4">
+          <table className="w-full  relative text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 {/* Table headers */}
@@ -205,7 +208,7 @@ export const Leave = () => {
                               handleprint();
                             }}
                           >
-                            <a className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a className="flex px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -231,7 +234,7 @@ export const Leave = () => {
                               HandleEdit(onleave);
                             }}
                           >
-                            <a className=" px-4 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex">
+                            <a className=" px-4 py-2 w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -252,7 +255,7 @@ export const Leave = () => {
                             </a>
                           </li>
                           <li>
-                            <a className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a className="flex px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -277,7 +280,7 @@ export const Leave = () => {
                               viewFiles();
                             }}
                           >
-                            <a className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <a className="flex px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -386,7 +389,11 @@ export const Leave = () => {
         )}
         {opendocs && (
           <ModalDocs show={true}>
-            <LeaveDocs />
+            <ExportToPdf
+              onClosePDF={() => {
+                setOpenDocs(false);
+              }}
+            />
           </ModalDocs>
         )}
       </div>

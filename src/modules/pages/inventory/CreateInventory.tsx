@@ -9,13 +9,13 @@ import { EmployeeService } from 'src/services/EmployeeService';
 
 interface ModalProps {
   onClick: () => void;
-  onUpdate: () => void;
+  //   onUpdate: () => void;
   onClose: () => void;
 }
 
-export const CreateEmployee: React.FC<ModalProps> = ({
+export const CreateInventory: React.FC<ModalProps> = ({
   onClick,
-  onUpdate,
+  //   onUpdate,
   onClose,
 }) => {
   //   const [showname, setShowName] = useState<EmployeeModel[]>([]);
@@ -26,7 +26,7 @@ export const CreateEmployee: React.FC<ModalProps> = ({
     } catch (error) {
       console.error('There was an error creating the employee:', error);
     }
-    onUpdate();
+    // onUpdate();
     onClose();
   };
 
@@ -35,9 +35,19 @@ export const CreateEmployee: React.FC<ModalProps> = ({
       <div>
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 640 512"
+              width="28"
+              height="28"
+              fill="blue"
+            >
+              <path d="M504 352H136.4c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0 96H136.1c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8h368c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm0-192H136.6c-4.4 0-8 3.6-8 8l-.1 48c0 4.4 3.6 8 8 8H504c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm106.5-139L338.4 3.7a48.2 48.2 0 0 0 -36.9 0L29.5 117C11.7 124.5 0 141.9 0 161.3V504c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V256c0-17.6 14.6-32 32.6-32h382.8c18 0 32.6 14.4 32.6 32v248c0 4.4 3.6 8 8 8h80c4.4 0 8-3.6 8-8V161.3c0-19.4-11.7-36.8-29.5-44.3z" />
+            </svg>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Create New Employee
+              Create New Inventory
             </h3>
+
             <button
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -72,59 +82,61 @@ export const CreateEmployee: React.FC<ModalProps> = ({
             {(formikProps) => (
               <form onSubmit={formikProps.handleSubmit} className=" p-4 md:p-5">
                 <div className="grid gap-4 mb-4 grid-cols-2">
-                  <div className="col-span-2 sm:col-span-1">
+                  <div className="col-span-2">
                     <label
-                      htmlFor="Type"
+                      htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      FirstName
+                      Item Name
                     </label>
                     <Field
                       type="text"
-                      name="first_name"
+                      name="name"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Type product name"
                     />
                   </div>
-                  <ErrorMessage name="first_name" component="div" />
-                  <div className="col-span-2 sm:col-span-1">
+                  <ErrorMessage name="name" component="div" />
+                  <div className="col-span-2">
                     <label
-                      htmlFor="price"
+                      htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      MiddleName
+                      Description
                     </label>
                     <Field
                       type="text"
-                      name="middle_name"
+                      name="description"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Type product name"
                     />
                   </div>
-                  <ErrorMessage name="middle_name" component="div" />
+                  <ErrorMessage name="description" component="div" />
 
                   <div className="col-span-2 sm:col-span-1">
                     <label
                       htmlFor="Type"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      LastName
+                      Category
                     </label>
                     <Field
                       type="text"
-                      name="last_name"
+                      name="category"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     />
                   </div>
-                  <ErrorMessage name="last_name" component="div" />
+                  <ErrorMessage name="category" component="div" />
                   <div className="col-span-2 sm:col-span-1">
                     <label
                       htmlFor="price"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Suffix
+                      Quantity
                     </label>
                     <Field
                       type="text"
-                      name="suffix"
+                      name="quantity"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     />
                   </div>
@@ -133,195 +145,84 @@ export const CreateEmployee: React.FC<ModalProps> = ({
                       htmlFor="Type"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Sex
+                      Unit Price
                     </label>
                     <Field
                       type="text"
-                      name="sex"
+                      name="unit_price"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     />
                   </div>
-                  <ErrorMessage name="sex" component="div" />
+                  <ErrorMessage name="unit_price" component="div" />
                   <div className="col-span-2 sm:col-span-1">
                     <label
                       htmlFor="price"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Date of Birth
+                      Total Value
                     </label>
                     <Field
-                      type="date"
-                      name="date_of_birth"
+                      type="text"
+                      name="total_value"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     />
                   </div>
-                  <ErrorMessage name="date_of_birth" component="div" />
-                  <div className="col-span-2">
+                  <ErrorMessage name="total_value" component="div" />
+
+                  <div className="col-span-2 sm:col-span-1">
+                    <label
+                      htmlFor="Type"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Supplier
+                    </label>
+                    <Field
+                      type="text"
+                      name="supplier"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    />
+                  </div>
+                  <ErrorMessage name="supplier" component="div" />
+                  <div className="col-span-2 sm:col-span-1">
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Location
+                    </label>
+                    <Field
+                      type="text"
+                      name="location"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    />
+                  </div>
+                  <div className="col-span-2 sm:col-span-1">
                     <label
                       htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Educational Attainment
+                      Record Level
                     </label>
                     <Field
                       type="text"
-                      name="educ_attainment"
+                      name="record_level"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Type product name"
                     />
                   </div>
-                  <ErrorMessage name="educ_attainment" component="div" />
                   <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="Type"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Age
-                    </label>
-                    <Field
-                      type="text"
-                      name="age"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    />
-                  </div>
-                  <ErrorMessage name="age" component="div" />
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="price"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Eligibility
-                    </label>
-                    <Field
-                      type="text"
-                      name="civil_service"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    />
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="Type"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Item Number
-                    </label>
-                    <Field
-                      type="text"
-                      name="item_number"
-                      placeholder="Type product name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    />
-                  </div>
-                  <ErrorMessage name="age" component="div" />
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="price"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Employment Status
-                    </label>
-                    <Field
-                      type="text"
-                      name="civil_service"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    />
-                  </div>
-                  {/* <div className="col-span-2">
                     <label
                       htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                      Item Number
-                    </label>
-                    <Field
-                      type="text"
-                      name="item_number"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Type product name"
-                    />
-                  </div> */}
-                  <div className="col-span-2">
-                    <label
-                      htmlFor="name"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      TIN
-                    </label>
-                    <Field
-                      type="text"
-                      name="tin"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                      placeholder="Type product name"
-                    />
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="Type"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Date of Appointment
+                      Date Recieved
                     </label>
                     <Field
                       type="date"
-                      name="date_original_appointment"
+                      name="date_recieved"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      placeholder="Type product name"
                     />
-                  </div>
-                  <ErrorMessage
-                    name="date_original_appointment"
-                    component="div"
-                  />
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="price"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Date of Last Promotion
-                    </label>
-                    <Field
-                      type="date"
-                      name="date_of_last_promotion"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    />
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="Type"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Lenght of Service
-                    </label>
-                    <Field
-                      type="text"
-                      name="length_of_service"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    />
-                  </div>
-                  <ErrorMessage name="length_of_service" component="div" />
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      htmlFor="price"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Department
-                    </label>
-                    <Field
-                      as="select"
-                      name="division"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    >
-                      <option value="">Select Department</option>
-                      <option value="Admin">Admin</option>
-                      <option value="Planning">Planning</option>
-                      <option value="Enforcement">Enforcement</option>
-                      <option value="Registration & Permitting Section">
-                        Registration & Permitting Section
-                      </option>
-                      <option value="Conservation & Development Section">
-                        Conservation & Development Section
-                      </option>
-                    </Field>
-                    <ErrorMessage name="department" component="div" />
                   </div>
                 </div>
                 <button
@@ -340,7 +241,7 @@ export const CreateEmployee: React.FC<ModalProps> = ({
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  Add new Employee
+                  Add new Item
                 </button>
               </form>
             )}

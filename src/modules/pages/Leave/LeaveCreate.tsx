@@ -169,6 +169,24 @@ export const LeaveCreate = ({ division, onClick }: LeaveCreateProps) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   >
                     <option value="">Select Leave Type</option>
+                    {/* <option value="Vacation Leave">Vacation Leave</option>
+                    <option value="Mandatory/Forced Leave">
+                      Mandatory/Forced Leave
+                    </option>
+                    <option value="Sick Leave"></option>
+                    <option value="Maternity Leave">Maternity Leave</option>
+                    <option value="Paternity Leave">Paternity Leave</option>
+                    <option value="Special Privilege Leave">
+                      Special Privilege Leave
+                    </option>
+                    <option value="Solo Parent Leave">Solo Parent Leave</option>
+                    <option value="VAWC Leave">VAWC Leave</option>
+                    <option value="Special Leave Benefits for Women">
+                      Special Leave Benefits for Women
+                    </option>
+                    <option value="Special Emergency (Calamity) Leave">
+                      Select Leave Type
+                    </option> */}
                     {leaveTypes.map((leaveType) => (
                       <option key={leaveType.id} value={leaveType.leave_type}>
                         {leaveType.leave_type}

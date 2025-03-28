@@ -16,7 +16,6 @@ export const Menu = () => {
   // const [showFixedSubMenu, setShowFixedSubMenu] = useState(false);
   // const [showCollapsedSubMenu, setShowCollapsedSubMenu] = useState(false);
 
-  const [showInvoce, setShowInvoice] = useState<boolean>(false);
   const [showCustomer, setShowCustomer] = useState<boolean>(false);
   const [showpurchase, setShowPurchase] = useState<boolean>(false);
   const [showaccounting, setShowAccounting] = useState<boolean>();
@@ -39,13 +38,7 @@ export const Menu = () => {
   }, [location.pathname]);
 
   const handleDropdownClick = (menu: any) => {
-    if (menu == 'inventory') {
-      setShowInvoice((prev) => {
-        const newValue = !prev;
-        localStorage.setItem('showInvoce', String(newValue));
-        return newValue;
-      });
-    } else if (menu === 'customer') {
+    if (menu === 'customer') {
       setShowCustomer((prev) => {
         const newValue = !prev;
         localStorage.setItem('showCustomer', String(newValue));
@@ -110,7 +103,7 @@ export const Menu = () => {
 
   return (
     <>
-      <div className=" bg-[#222D32] text-white w-2/12 ">
+      <div className=" bg-[#222D32] text-white w-2/12  relative">
         <div className="flex items-center">
           <img
             className="w-16 h-16 p-2 rounded-full  float-right ml-2"
@@ -153,9 +146,13 @@ export const Menu = () => {
                 <a>Dashboard</a>
               </li>
             </HandleClicker>
-            <HandleClicker
+            {/* <HandleClicker
               onClick={() => handleMenuClick('inventory')}
               to={`${ROUTES.EMPLOYEE}`}
+            > */}
+            <HandleClicker
+              onClick={() => handleMenuClick('inventory')}
+              to={`${ROUTES.INVENTORY}`}
             >
               <li
                 onClick={() => handleDropdownClick('inventory')}
@@ -173,17 +170,6 @@ export const Menu = () => {
                 </svg>
 
                 <a className="font-poppins">Inventory</a>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  fill="currentColor"
-                  className="bi bi-caret-left-fill inline-block float-right mt-2"
-                  viewBox="0 0 320 512"
-                >
-                  <path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" />
-                </svg>
               </li>
             </HandleClicker>
             {/* <ul
@@ -255,7 +241,7 @@ export const Menu = () => {
                 </HandleClicker>
               </li>
             </ul> */}
-            {showInvoce && (
+            {/* {showInvoce && (
               <div>
                 <ul className=" bg-[#2C3B41] text-xs font-poppins">
                   <HandleClicker
@@ -295,7 +281,7 @@ export const Menu = () => {
                   </li>
                 </ul>
               </div>
-            )}
+            )} */}
             <HandleClicker
               onClick={() => handleMenuClick('employee')}
               to={`${ROUTES.EMPLOYEE}`}
