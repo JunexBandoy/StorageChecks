@@ -9,6 +9,7 @@ interface CLosePDS {
 
 export const PDSpage3: React.FC<CLosePDS> = ({ onClick }) => {
   const rows = Array.from({ length: 7 }, (_, i) => i + 1);
+  const rows2 = Array.from({ length: 17 }, (_, i) => i + 1);
   return (
     <>
       <div className="mx-auto pb-[50px] text-black w-full  p-12">
@@ -68,7 +69,6 @@ export const PDSpage3: React.FC<CLosePDS> = ({ onClick }) => {
                   colSpan={1}
                   className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black"
                 >
-                  {' '}
                   <p className="text-center">NUMBER OF</p>
                   <p className="text-center">HOURS</p>
                 </td>
@@ -93,20 +93,22 @@ export const PDSpage3: React.FC<CLosePDS> = ({ onClick }) => {
               <tr className="line-height-[25px] ">
                 <td colSpan={9} className="bg-[#808080] text-white">
                   <p className="text-[10px]   font-['Times_New_Roman']">
-                    V. WORK EXPERIENCED
+                    V. LEARNING AND DEVELPMENT (L&D) INTERVENTIONS/TRAINING
+                    PROGRAMS ATTENDED
                   </p>
                 </td>
               </tr>
               <tr className="line-height-[25px] ">
-                <td colSpan={9} className="bg-[#808080] text-white">
+                <td colSpan={9} className="bg-[#808080] text-white UP">
                   <p className="text-[8px]   font-['Times_New_Roman']">
-                    (INCLUDE PRIVATE EMPLOYMENT STARTS FROM YOUR RECENT WORK)
-                    DESCRIPTION OF DUTIES SHOULD BE INDICATED IN THE ATTACHED
-                    WORK EXPEREINCE SHEET.
+                    Start from the most recent L&amp;D/training program and
+                    include only the relevant L&amp;D/ training taken for the
+                    last five (5) years for Division Chief/Executive/Managerial
+                    positions
                   </p>
                 </td>
               </tr>
-              <tr className="border-b-[1px] border-black">
+              {/* <tr className="border-b-[1px] border-black">
                 <td
                   colSpan={1}
                   className="bg-[#D3D3D3] text-black border-l-[1px] border-black "
@@ -184,6 +186,169 @@ export const PDSpage3: React.FC<CLosePDS> = ({ onClick }) => {
                     <br />
                     <span>(Y/N)</span>
                   </p>
+                </td>
+              </tr> */}
+
+              <tr className=" font-['Times_New_Roman'] bg-[#D3D3D3] border-b-[1px]  border-black">
+                <td
+                  colSpan={2}
+                  className="text-[8px] font-['Times_New_Roman'] text-center   border-r-[1px] border-black "
+                >
+                  <p>
+                    30. &nbsp; TITLE OF LEARNING AND DEVELOPMENT
+                    INTERVENTIONS/TRAINING PROGRAMS
+                  </p>
+                  <p> (WRITE IN FULL)</p>
+                </td>
+
+                <td
+                  colSpan={2}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-b-[1px] border-black"
+                >
+                  <p className="text-center">INCLUSIVE DATES</p>
+                  <p className="text-center">(MM/DD/YY)</p>
+                  <div className="flex border-t-[1px] border-black">
+                    <div className="flex-1  border-r-[1px] border-black">
+                      <p className="text-center">FROM</p>
+                    </div>
+                    <div className="flex-1 ">
+                      <p className="text-center">TO</p>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  colSpan={1}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black"
+                >
+                  <p className="text-center">NUMBER OF</p>
+                  <p className="text-center">HOURS</p>
+                </td>
+                <td
+                  colSpan={1}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black"
+                >
+                  <p className="text-center">Type of LD</p>
+                  <p className="text-center">(SUPERVISORY</p>
+                  <p className="text-center">MANAGERIAL/</p>
+                  <p className="text-center">TECHNICAL/ETC)</p>
+                </td>
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black"
+                >
+                  <p className="text-center">CONDUCTED/SPONSORED BY</p>
+                  <p className="text-center">(WRITE IN FULL)</p>
+                </td>
+              </tr>
+              {rows2.map((row) => {
+                return <P3tableRow key={row} />;
+              })}
+              <tr className="line-height-[25px] border border-black">
+                <td colSpan={9} className="bg-[#D3D3D3] text-red-500">
+                  <p className="text-[8px] text-center  font-['Times_New_Roman']">
+                    (CONTINUE IN SEPARATE SHEET IF NECESSARY)
+                  </p>
+                </td>
+              </tr>
+              <tr className="line-height-[25px] ">
+                <td colSpan={9} className="bg-[#808080] text-white">
+                  <p className="text-[10px]   font-['Times_New_Roman']">
+                    VIII. OTHER INFORMATION
+                  </p>
+                </td>
+              </tr>
+              <tr className="font-['Times_New_Roman'] bg-[#D3D3D3] border-b-[1px] border-black">
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] text-center border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p>31. &nbsp; SPECIAL SKILLS AND HOBBIESS</p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-b-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center">
+                    NON-ACADEMIC DISTINCTION / RECOGNITION
+                  </p>
+                  <p className="text-center">WRITE IN FULL</p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center">
+                    MEMBERSHIP OF ASSOCIATION/ORGANIZATION
+                  </p>
+                  <p className="text-center">(WRITE IN FULL)</p>
+                </td>
+              </tr>
+              <tr className="font-['Times_New_Roman']  border-b-[1px] border-black h-[20px]">
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] text-center border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p></p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-b-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center"></p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center"></p>
+                </td>
+              </tr>
+              <tr className="font-['Times_New_Roman']  border-b-[1px] border-black h-[20px]">
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] text-center border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p></p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-b-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center"></p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center"></p>
+                </td>
+              </tr>
+              <tr className="font-['Times_New_Roman']  border-b-[1px] border-black h-[20px]">
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] text-center border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p></p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-b-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center"></p>
+                </td>
+
+                <td
+                  colSpan={3}
+                  className="text-[8px] font-['Times_New_Roman'] border-r-[1px] border-black w-[33.33%]"
+                >
+                  <p className="text-center"></p>
                 </td>
               </tr>
               <TableFooter />

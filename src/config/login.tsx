@@ -30,10 +30,15 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log('Login Response:', data); // <-- add this
         const token = data.token;
-        localStorage.setItem('jwt', token); // Store JWT in localStorage
-        onLoginSuccess(); // Notify parent component that login is successful
-        alert('Login Successful!');
+        if (token) {
+          localStorage.setItem('jwt', token);
+          onLoginSuccess();
+          alert('Login Successful!');
+        } else {
+          setError('Token not received from server.');
+        }
       } else {
         const data = await response.json();
         setError(data.message || 'Login failed');
@@ -46,9 +51,11 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen bg-[url('./Images/logs.png')] bg-cover bg-no-repeat bg-center">
       <div className="bg-white p-8 rounded-md shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center tracking-widest text-[#32609E] ">
+          Welcome!
+        </h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label className="block text-sm font-semibold text-gray-700">
@@ -77,7 +84,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
           <button
             type="submit"
-            className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 disabled:bg-blue-300"
+            className="w-full py-2 bg-[#32609E] text-white font-semibold rounded-md hover:bg-blue-600 disabled:bg-blue-300"
             disabled={isLoading} // Disable button when loading
           >
             {isLoading ? 'Logging in...' : 'Login'} {/* Show loading text */}

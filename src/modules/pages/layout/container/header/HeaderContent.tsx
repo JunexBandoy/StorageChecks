@@ -1,4 +1,4 @@
-import LogoutButton from 'src/config/logout';
+import { LogoutButton } from 'src/config/logout';
 
 export const HeaderContent = () => {
   return (

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { Page1 } from './page1';
 import { Page2 } from './Page2';
+import { Page4 } from './page4';
 import { PDSpage3 } from './PDSpage3';
 
 import { ModalDocs } from '@components/forms/ModalDocs';
@@ -49,6 +50,19 @@ export const PDS = () => {
       {trigger === 3 && (
         <ModalDocs show={true}>
           <PDSpage3
+            onClick={() => {
+              hidePage();
+            }}
+          />
+        </ModalDocs>
+      )}
+
+      <button className="bg-blue-200 p-2 m-2" onClick={() => showPage(4)}>
+        Page4
+      </button>
+      {trigger === 4 && (
+        <ModalDocs show={true}>
+          <Page4
             onClick={() => {
               hidePage();
             }}

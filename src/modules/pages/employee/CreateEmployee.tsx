@@ -70,7 +70,10 @@ export const CreateEmployee: React.FC<ModalProps> = ({
             onSubmit={handleSubmit}
           >
             {(formikProps) => (
-              <form onSubmit={formikProps.handleSubmit} className=" p-4 md:p-5">
+              <form
+                onSubmit={formikProps.handleSubmit}
+                className=" p-4 md:p-5  "
+              >
                 <div className="grid gap-4 mb-4 grid-cols-2">
                   <div className="col-span-2 sm:col-span-1">
                     <label
