@@ -1,7 +1,8 @@
 export const ROUTES = {
+  Login: `login`,
   Dashboard: `dashboard`,
   Product: `product`,
-  Inventory: `inventory`,
+  INVENTORY: `inventory`,
   Categories: `category`,
   EMPLOYEE: `Employee`,
   RECEIVED: `received`,

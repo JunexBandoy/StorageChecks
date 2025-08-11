@@ -18,9 +18,20 @@ body {
 #root {
   height: 100%;
 }
+
 @media print {
-  form {
-    width: 48.5in;
-    height: 513in;
+  body * {
+    visibility: hidden;
+  }
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+  #print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
   }
 }

@@ -5,7 +5,7 @@ interface Iprops {
 export const Bodycontent: React.FC<Iprops> = ({ children }) => {
   return (
     <>
-      <div className="w-10/12 ">{children}</div>
+      <div className="w-10/12 relative">{children}</div>
     </>
   );
 };

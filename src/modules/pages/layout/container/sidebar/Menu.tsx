@@ -16,12 +16,11 @@ export const Menu = () => {
   // const [showFixedSubMenu, setShowFixedSubMenu] = useState(false);
   // const [showCollapsedSubMenu, setShowCollapsedSubMenu] = useState(false);
 
-  const [showInvoce, setShowInvoice] = useState<boolean>(false);
   const [showCustomer, setShowCustomer] = useState<boolean>(false);
-  const [showpurchase, setShowPurchase] = useState<boolean>(false);
+  // const [showpurchase, setShowPurchase] = useState<boolean>(false);
   const [showaccounting, setShowAccounting] = useState<boolean>();
-  const [showtax, setShowTax] = useState<boolean>();
-  const [showreport, setShowReport] = useState<boolean>();
+  // const [showtax, setShowTax] = useState<boolean>();
+  // const [showreport, setShowReport] = useState<boolean>();
 
   const setActiveSubMenuByRoute = (route: any) => {
     if (route === ROUTES.Dashboard) {
@@ -39,24 +38,18 @@ export const Menu = () => {
   }, [location.pathname]);
 
   const handleDropdownClick = (menu: any) => {
-    if (menu == 'inventory') {
-      setShowInvoice((prev) => {
-        const newValue = !prev;
-        localStorage.setItem('showInvoce', String(newValue));
-        return newValue;
-      });
-    } else if (menu === 'customer') {
+    if (menu === 'customer') {
       setShowCustomer((prev) => {
         const newValue = !prev;
         localStorage.setItem('showCustomer', String(newValue));
         return newValue;
       });
     } else if (menu === 'purchase') {
-      setShowPurchase((prev) => {
-        const newValue = !prev;
-        localStorage.setItem('showpurchase', String());
-        return newValue;
-      });
+      // setShowPurchase((prev) => {
+      //   const newValue = !prev;
+      //   localStorage.setItem('showpurchase', String());
+      //   return newValue;
+      // });
     } else if (menu === 'accounting') {
       setShowAccounting((prev) => {
         const newValue = !prev;
@@ -64,17 +57,17 @@ export const Menu = () => {
         return newValue;
       });
     } else if (menu === 'tax') {
-      setShowTax((prev) => {
-        const newValue = !prev;
-        localStorage.setItem('showtax', String(newValue));
-        return newValue;
-      });
+      // setShowTax((prev) => {
+      //   const newValue = !prev;
+      //   localStorage.setItem('showtax', String(newValue));
+      //   return newValue;
+      // });
     } else if (menu == 'reports') {
-      setShowReport((prev) => {
-        const newValue = !prev;
-        localStorage.setItem('showreport', String(newValue));
-        return newValue;
-      });
+      // setShowReport((prev) => {
+      //   const newValue = !prev;
+      //   localStorage.setItem('showreport', String(newValue));
+      //   return newValue;
+      // });
     }
   };
 
@@ -110,7 +103,7 @@ export const Menu = () => {
 
   return (
     <>
-      <div className=" bg-[#222D32] text-white w-2/12 ">
+      <div className=" bg-[#222D32] text-white w-2/12  relative">
         <div className="flex items-center">
           <img
             className="w-16 h-16 p-2 rounded-full  float-right ml-2"
@@ -153,9 +146,13 @@ export const Menu = () => {
                 <a>Dashboard</a>
               </li>
             </HandleClicker>
-            <HandleClicker
+            {/* <HandleClicker
               onClick={() => handleMenuClick('inventory')}
               to={`${ROUTES.EMPLOYEE}`}
+            > */}
+            <HandleClicker
+              onClick={() => handleMenuClick('inventory')}
+              to={`${ROUTES.INVENTORY}`}
             >
               <li
                 onClick={() => handleDropdownClick('inventory')}
@@ -173,17 +170,6 @@ export const Menu = () => {
                 </svg>
 
                 <a className="font-poppins">Inventory</a>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  fill="currentColor"
-                  className="bi bi-caret-left-fill inline-block float-right mt-2"
-                  viewBox="0 0 320 512"
-                >
-                  <path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" />
-                </svg>
               </li>
             </HandleClicker>
             {/* <ul
@@ -255,7 +241,7 @@ export const Menu = () => {
                 </HandleClicker>
               </li>
             </ul> */}
-            {showInvoce && (
+            {/* {showInvoce && (
               <div>
                 <ul className=" bg-[#2C3B41] text-xs font-poppins">
                   <HandleClicker
@@ -295,7 +281,7 @@ export const Menu = () => {
                   </li>
                 </ul>
               </div>
-            )}
+            )} */}
             <HandleClicker
               onClick={() => handleMenuClick('employee')}
               to={`${ROUTES.EMPLOYEE}`}
@@ -315,7 +301,7 @@ export const Menu = () => {
               </li>
             </HandleClicker>
 
-            <li
+            {/* <li
               onClick={() => {
                 handleDropdownClick('customer');
               }}
@@ -342,7 +328,7 @@ export const Menu = () => {
               >
                 <path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z" />
               </svg>
-            </li>
+            </li> */}
             {showCustomer && (
               <div>
                 <ul className=" bg-[#2C3B41] text-xs font-poppins">
@@ -389,7 +375,7 @@ export const Menu = () => {
                 <a>Leave</a>
               </li>
             </HandleClicker>
-            <li
+            {/* <li
               onClick={() => {
                 handleDropdownClick('purchase');
               }}
@@ -440,7 +426,7 @@ export const Menu = () => {
                   </li>
                 </ul>
               </div>
-            )}
+            )} */}
             <HandleClicker
               onClick={() => handleMenuClick('received')}
               to={`${ROUTES.RECEIVED}`}
@@ -457,7 +443,7 @@ export const Menu = () => {
                   <path d="M4 4a3 3 0 0 0-3 3v6h6V7a3 3 0 0 0-3-3zm0-1h8a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4zm2.646 1A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3H6.646z" />
                   <path d="M11.793 8.5H9v-1h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.354-.146l-.853-.854zM5 7c0 .552-.448 0-1 0s-1 .552-1 0a1 1 0 0 1 2 0z" />
                 </svg>
-                <a>Documents</a>
+                <a>PersonalDataSheet</a>
               </li>
             </HandleClicker>
 
@@ -513,7 +499,7 @@ export const Menu = () => {
                 </ul>
               </div>
             )}
-            <li className="p-2 cursor-pointer text-gray-300 hover:text-white hover:bg-[#1E282C]">
+            {/* <li className="p-2 cursor-pointer text-gray-300 hover:text-white hover:bg-[#1E282C]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width=" 16"
@@ -528,9 +514,9 @@ export const Menu = () => {
                 />
               </svg>
               <a>Payroll</a>
-            </li>
+            </li> */}
 
-            <li
+            {/* <li
               onClick={() => {
                 handleDropdownClick('tax');
               }}
@@ -584,8 +570,8 @@ export const Menu = () => {
                   </li>
                 </ul>
               </div>
-            )}
-            <li
+            )} */}
+            {/* <li
               onClick={() => {
                 handleDropdownClick('reports');
               }}
@@ -639,8 +625,8 @@ export const Menu = () => {
                   </li>
                 </ul>
               </div>
-            )}
-            <li className="p-2 cursor-pointer text-gray-300 hover:text-white hover:bg-[#1E282C]">
+            )} */}
+            {/* <li className="p-2 cursor-pointer text-gray-300 hover:text-white hover:bg-[#1E282C]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width=" 16"
@@ -652,7 +638,7 @@ export const Menu = () => {
                 <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z" />
               </svg>
               <a>Settings</a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

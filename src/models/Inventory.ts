@@ -1,23 +1,7 @@
 import * as Yup from 'yup';
 
-export interface inventory {
+export interface inventoryModel {
   id: number;
-  inventory_id: number;
-  name: string;
-  description: string;
-  category: string;
-  quantity: string;
-  unit_price: number;
-  total_value: number;
-  supplier: string;
-  location: string;
-  record_level: string;
-  date_recieved: number;
-  remarks: string;
-}
-
-export interface InventoryFormValues {
-  inventory_id: string;
   name: string;
   description: string;
   category: string;
@@ -31,8 +15,23 @@ export interface InventoryFormValues {
   remarks: string;
 }
 
-export const initialValues: InventoryFormValues = {
-  inventory_id: '',
+// export const InventoryFormValues  {
+//   id: string;
+//   name: string;
+//   description: string;
+//   category: string;
+//   quantity: string;
+//   unit_price: string;
+//   total_value: string;
+//   supplier: string;
+//   location: string;
+//   record_level: string;
+//   date_recieved: string;
+//   remarks: string;
+// }
+
+export const initialValues: inventoryModel = {
+  id: 0,
   name: '',
   description: '',
   category: '',
@@ -47,7 +46,6 @@ export const initialValues: InventoryFormValues = {
 };
 
 export const validationSchema = Yup.object({
-  inventory_id: Yup.string().required('Required'),
   name: Yup.string().required('Required'),
   description: Yup.string().required('Required'),
   category: Yup.string().required('Required'),

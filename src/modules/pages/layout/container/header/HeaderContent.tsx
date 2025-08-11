@@ -1,3 +1,5 @@
+import { LogoutButton } from 'src/config/logout';
+
 export const HeaderContent = () => {
   return (
     <>
@@ -43,7 +45,8 @@ export const HeaderContent = () => {
                   alt="Bordered avatar"
                 />
               </div>
-              <p className="p-2 text-sm font-poppins">Junex Bandoy</p>
+              {/* <p className="p-2 text-sm font-poppins">Junex Bandoy</p> */}
+              <LogoutButton />
             </div>
           </div>
         </div>

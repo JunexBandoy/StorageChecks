@@ -1,66 +1,38 @@
 import { useEffect, useState } from 'react';
 
-// import { Files } from './Files';
-import { LeaveCreate } from './LeaveCreate';
-import { LeaveEdit } from './LeaveEdit';
-import ExportToPdf from './LeavePDF';
+import { CreateWorking } from './CreateInventory';
+import { EditInventory } from './EditInventory';
 
 import { ActionButton } from '@components/Buttons/ActionButton';
 import { Modal } from '@components/forms/Modal';
-import { ModalDocs } from '@components/forms/ModalDocs';
 import { Titleheader } from '@components/MenuTitle';
-import { LeaveModel } from 'src/models/leaveModel';
-import { LeaveService } from 'src/services/LeaveService';
+import { inventoryModel } from 'src/models/Inventory';
+import { InventoryServices } from 'src/services/InventoryServices';
 
-export const Leave = () => {
-  const [data, setData] = useState<LeaveModel[]>([]);
-  const [showCreate, setShowCreate] = useState<boolean>(false);
-  const [showedit, setShowEdit] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedDivision, setSelectedDivision] = useState<string>(''); // Ensure it's properly initialized
-  // const [selectedleave, setSelectedLeave] = useState<LeaveModel[]>([]);
-  const [opendocs, setOpenDocs] = useState<boolean>(false);
+export const Inventory = () => {
+  const [data, setData] = useState<inventoryModel[]>([]);
+  const [selectedInventory, setSelectedInventory] =
+    useState<inventoryModel | null>(null);
   const [action, setAction] = useState<number | null>(null);
-  const [onleave, setOnLeave] = useState<LeaveModel | null>(null);
-  const [view, SetView] = useState<boolean>(false);
+  const [showCreate, setShowCreate] = useState<boolean>(false);
+  const [showEdit, setShowEdit] = useState<boolean>(false);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 10; // Number of items per page
 
-  const toggleData = () => {
-    setIsOpen((prevState) => !prevState);
-  };
-
-  const viewFiles = () => {
-    SetView(true);
-  };
-
-  const handleprint = () => {
-    setOpenDocs(true);
-    setAction(null);
-  };
-
   const loadData = async () => {
     try {
-      const leave = await LeaveService.getAll();
+      const leave = await InventoryServices.getAll();
       setData(leave);
     } catch (error) {
       console.error('Failed to Load Data');
     }
   };
 
-  const HandleEdit = (leave: LeaveModel) => {
+  const handleEdit = (value: inventoryModel) => {
+    setSelectedInventory(value);
     setShowEdit(true);
-    setOnLeave(leave);
-    setAction(null);
   };
-
-  useEffect(() => {
-    view;
-    viewFiles();
-    loadData();
-    handleprint;
-  }, []);
 
   // Get current page data
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -70,145 +42,94 @@ export const Leave = () => {
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+  useEffect(() => {
+    loadData();
+  }, []);
   return (
     <>
-      <div className="relative">
-        <Titleheader label="Employee" />
-        <div className="flex justify-end p-4 font-sans">
-          <div className="relative pb-2">
-            <button
-              className="p-2 bg-[#3C8DBC] border rounded-md text-white"
-              onClick={toggleData}
-            >
-              File a leave
-            </button>
-          </div>
-          {isOpen && (
-            <div
-              onClick={() => setIsOpen(false)}
-              className="w-[98%]  h-full mt-10 absolute z-20 text-white backdrop-blur-sm bg-white bg-opacity-10"
-            >
-              <div className="flex justify-end p-2">
-                <button
-                  className="p-2 bg-[#3C8DBC]  border rounded-md w-[320px]"
-                  onClick={() => {
-                    setSelectedDivision('Admin');
-                    setShowCreate(true);
-                    setIsOpen(false);
-                  }}
-                >
-                  Admin
-                </button>
-              </div>
-              <div className="flex justify-end p-2">
-                <button
-                  className="p-2 bg-[#3C8DBC]  border rounded-md w-[320px]"
-                  onClick={() => {
-                    setSelectedDivision('Planning');
-                    setShowCreate(true);
-                    setIsOpen(false);
-                  }}
-                >
-                  Planning
-                </button>
-              </div>
-              <div className="flex justify-end p-2">
-                <button
-                  className="p-2 bg-[#3C8DBC]  border rounded-md w-[320px]"
-                  onClick={() => {
-                    setSelectedDivision('Enforcement');
-                    setShowCreate(true);
-                    setIsOpen(false);
-                  }}
-                >
-                  Enforcement
-                </button>
-              </div>
-              <div className="flex justify-end p-2">
-                <button
-                  className="p-2 bg-[#3C8DBC]  border rounded-md w-[320px]"
-                  onClick={() => {
-                    setSelectedDivision('Registration and Permitting Section');
-                    setShowCreate(true);
-                    setIsOpen(false);
-                  }}
-                >
-                  Registration & Permitting Section
-                </button>
-              </div>
-              <div className="flex justify-end p-2">
-                <button
-                  className="p-2 bg-[#3C8DBC]  border rounded-md w-[320px]"
-                  onClick={() => {
-                    setSelectedDivision('Conservation and Development Section');
-                    setShowCreate(true);
-                    setIsOpen(false);
-                  }}
-                >
-                  Conservation and Development Section
-                </button>
-              </div>
+      <div>
+        <Titleheader label="Inventory" />
+
+        <div className=" overflow-x-auto shadow-md sm:rounded-lg p-4">
+          <div className="pb-4">
+            <div className="flex justify-end">
+              <button
+                className="p-2 bg-[#3C8DBC] border rounded-md text-white"
+                onClick={() => {
+                  setShowCreate(true);
+                }}
+              >
+                Add inventory item
+              </button>
             </div>
-          )}
-        </div>
-        <div className="relative  shadow-md sm:rounded-lg p-4">
-          <table className="w-full  relative text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          </div>
+          <table className="w-full text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400 p-4">
+            <thead className="text-xs font-sans text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                {/* Table headers */}
                 <th scope="col" className="px-6 py-3">
-                  FullName
+                  Name
+                </th>
+                <th scope="col" className="px-6 py-3 ">
+                  Description
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Type
+                  Serial No.
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Credits
+                  Category
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Date Effective
+                  Quantity
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Date End
+                  Unit Price
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Total Vlaue
+                </th>
+
+                <th scope="col" className="px-6 py-3">
+                  Received
+                </th>
+
+                <th scope="col" className="px-6 py-3">
+                  Material Requisition
+                </th>
+
                 <th scope="col" className="px-6 py-3">
                   Action
                 </th>
               </tr>
             </thead>
-            <tbody className="relative">
-              {currentData.map((onleave) => (
+            <tbody className="font-sans text-xs">
+              {currentData.map((value) => (
                 <tr
-                  key={onleave.id}
+                  key={value.id}
                   className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
                 >
-                  <td className="px-6 py-4 text-xs text-gray-900 whitespace-nowrap dark:text-white">
-                    {`${onleave.first_name} ${onleave.middle_name} ${onleave.last_name}`}
-                  </td>
-                  <td className="px-6 py-4 text-xs">{onleave.type}</td>
-                  <td className="px-6 py-4 text-xs">{onleave.credit}</td>
-                  <td className="px-6 py-4 text-xs">{onleave.date_file}</td>
-                  <td className="px-6 py-4 text-xs">{onleave.date_started}</td>
-                  <td className="px-6 py-4 flex">
-                    {/* Action buttons */}
-
+                  <td className="px-6 py-2">{value.name}</td>
+                  <td className="px-6 py-2 ">{value.description}</td>
+                  <td className="px-6 py-2">{value.supplier}</td>
+                  <td className="px-6 py-2">{value.category}</td>
+                  <td className="px-6 py-2 text-[#3C8DBC]">{value.quantity}</td>
+                  <td className="px-6 py-2">{value.unit_price}</td>
+                  <td className="px-6 py-2">{value.total_value}</td>
+                  <td className="px-6 py-2">{value.date_recieved}</td>
+                  <td className="px-6 py-2">{value.location}</td>
+                  <td className="px-6 py-2 flex">
                     <ActionButton
                       onClick={() => {
-                        setAction(action === onleave.id ? null : onleave.id);
+                        setAction(action === value.id ? null : value.id);
                       }}
                     />
-                    {action === onleave.id && (
-                      <div className="z-20  absolute mt-[1.6rem] bg-white divide-y divide-gray-100 rounded-lg shadow w-[7rem] dark:bg-gray-700 ">
+                    {action === value.id && (
+                      <div className="z-10 cursor-pointer  absolute mt-[1.6rem] ml-[-3.5rem]  bg-white divide-y divide-gray-100 rounded-lg shadow w-[7rem] dark:bg-gray-700  ">
                         <ul
-                          className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                          className="py-2 text-sm text-gray-700 dark:text-gray-200 "
                           aria-labelledby="dropdownDefaultButton"
                         >
-                          <li
-                            onClick={() => {
-                              handleprint();
-                            }}
-                          >
-                            <a className="flex px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                          <li>
+                            <a className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -231,10 +152,10 @@ export const Leave = () => {
                           <li
                             className="flex"
                             onClick={() => {
-                              HandleEdit(onleave);
+                              handleEdit(value);
                             }}
                           >
-                            <a className=" px-4 py-2 w-full cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex">
+                            <a className=" px-4 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -254,8 +175,12 @@ export const Leave = () => {
                               Edit
                             </a>
                           </li>
-                          <li>
-                            <a className="flex px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                          <li
+                            onClick={() => {
+                              handleEdit(value);
+                            }}
+                          >
+                            <a className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -275,12 +200,9 @@ export const Leave = () => {
                               Delete
                             </a>
                           </li>
-                          <li
-                            onClick={() => {
-                              viewFiles();
-                            }}
-                          >
-                            <a className="flex px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+
+                          <li>
+                            <a className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -308,9 +230,6 @@ export const Leave = () => {
               ))}
             </tbody>
           </table>
-
-          {/* Pagination controls */}
-
           <nav aria-label="Page navigation example">
             <ul className="flex justify-end -space-x-px text-sm pt-4">
               {/* Previous Button */}
@@ -362,46 +281,33 @@ export const Leave = () => {
               </li>
             </ul>
           </nav>
+          {showCreate && (
+            <Modal show={true}>
+              <CreateWorking
+                onClick={() => {
+                  setShowCreate(false);
+                }}
+                onClose={() => setShowCreate(false)}
+                // onUpdate={() => reloadTableData()}
+              />
+            </Modal>
+          )}
+          {showEdit && selectedInventory && (
+            <Modal show={true}>
+              <EditInventory
+                onClick={() => {
+                  setShowEdit(false);
+                }}
+                onClose={() => {
+                  setShowEdit(false);
+                }}
+
+                // onUpdate={() => reloadTableData()}
+              />
+            </Modal>
+          )}
         </div>
-        {showCreate && (
-          <Modal show={true}>
-            <LeaveCreate
-              division={selectedDivision}
-              onClick={() => {
-                setShowCreate(false);
-              }}
-              onClose={() => {
-                setShowCreate(false);
-              }}
-            />
-          </Modal>
-        )}
-        {showedit && onleave && (
-          <Modal show={true}>
-            <LeaveEdit
-              onClick={() => {
-                setShowEdit(false);
-              }}
-              onClose={() => setShowEdit(false)}
-              leavedetails={onleave}
-            />
-          </Modal>
-        )}
-        {opendocs && (
-          <ModalDocs show={true}>
-            <ExportToPdf
-              onClosePDF={() => {
-                setOpenDocs(false);
-              }}
-            />
-          </ModalDocs>
-        )}
       </div>
-      {/* {view && (
-        <Modal show={true}>
-          <Files />
-        </Modal>
-      )} */}
     </>
   );
 };

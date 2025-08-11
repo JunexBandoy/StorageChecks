@@ -70,7 +70,10 @@ export const CreateEmployee: React.FC<ModalProps> = ({
             onSubmit={handleSubmit}
           >
             {(formikProps) => (
-              <form onSubmit={formikProps.handleSubmit} className=" p-4 md:p-5">
+              <form
+                onSubmit={formikProps.handleSubmit}
+                className=" p-4 md:p-5  "
+              >
                 <div className="grid gap-4 mb-4 grid-cols-2">
                   <div className="col-span-2 sm:col-span-1">
                     <label
@@ -198,7 +201,35 @@ export const CreateEmployee: React.FC<ModalProps> = ({
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     />
                   </div>
-                  <div className="col-span-2">
+                  <div className="col-span-2 sm:col-span-1">
+                    <label
+                      htmlFor="Type"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Item Number
+                    </label>
+                    <Field
+                      type="text"
+                      name="item_number"
+                      placeholder="Type product name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    />
+                  </div>
+                  <ErrorMessage name="age" component="div" />
+                  <div className="col-span-2 sm:col-span-1">
+                    <label
+                      htmlFor="price"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Employment Status
+                    </label>
+                    <Field
+                      type="text"
+                      name="civil_service"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    />
+                  </div>
+                  {/* <div className="col-span-2">
                     <label
                       htmlFor="name"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -211,7 +242,7 @@ export const CreateEmployee: React.FC<ModalProps> = ({
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Type product name"
                     />
-                  </div>
+                  </div> */}
                   <div className="col-span-2">
                     <label
                       htmlFor="name"

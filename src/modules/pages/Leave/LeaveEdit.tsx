@@ -32,37 +32,37 @@ export const LeaveEdit: React.FC<Iprops> = ({
   if (!leavedetails) return null;
 
   const handleSubmit = async (values: LeaveModel) => {
-    console.log('Submitting:', values);
+    console.log('Submitting form with values:', values); // Check submitted values
     setIsLoading(true);
-    if (!leavedetails) return null;
+    if (!leavedetails) return console.warn('No leave details provided'); // Safety check
     try {
       await LeaveService.update({ ...values, id: leavedetails.id });
-      console.log('Leave updated successfully');
+      console.log('Update successful');
       onClose();
     } catch (error) {
-      console.error('Error updating leave:', error);
+      console.error('Error during update:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleLeaveTypeChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    setFieldValue: (field: string, value: any) => void
-  ) => {
-    const selectedType = event.target.value;
-    setFieldValue('type', selectedType);
+  // const handleLeaveTypeChange = (
+  //   event: React.ChangeEvent<HTMLSelectElement>,
+  //   setFieldValue: (field: string, value: any) => void
+  // ) => {
+  //   const selectedType = event.target.value;
+  //   setFieldValue('type', selectedType);
 
-    const selectedLeaveType = leaveType.find(
-      (type) => type.leave_type === selectedType
-    );
-    if (selectedLeaveType) {
-      const creditValue = `${selectedLeaveType.leave_credits} Days of Leave for this type`;
-      setFieldValue('credit', creditValue);
-    } else {
-      setFieldValue('credit', 0);
-    }
-  };
+  //   const selectedLeaveType = leaveType.find(
+  //     (type) => type.leave_type === selectedType
+  //   );
+  //   if (selectedLeaveType) {
+  //     const creditValue = `${selectedLeaveType.leave_credits} Days of Leave for this type`;
+  //     setFieldValue('credit', creditValue);
+  //   } else {
+  //     setFieldValue('credit', 0);
+  //   }
+  // };
 
   return (
     <div>
@@ -100,8 +100,8 @@ export const LeaveEdit: React.FC<Iprops> = ({
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ handleSubmit, setFieldValue }) => (
-            <form onSubmit={handleSubmit} className="p-4 md:p-5">
+          {({}) => (
+            <form className="p-4 md:p-5">
               <div className="grid gap-4 mb-4 grid-cols-2">
                 <div className="col-span-2">
                   <label
@@ -114,16 +114,16 @@ export const LeaveEdit: React.FC<Iprops> = ({
                     as="select"
                     name="type"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-                      handleLeaveTypeChange(event, setFieldValue)
-                    }
+                    // onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+                    //   handleLeaveTypeChange(event, setFieldValue)
+                    // }
                   >
                     <option value="">{leavedetails.type}</option>
-                    {/* {leaveType.map((value) => (
+                    {leaveType.map((value) => (
                       <option key={value.id} value={value.leave_type}>
                         {value.leave_type}
                       </option>
-                    ))} */}
+                    ))}
                   </Field>
                   <ErrorMessage
                     name="type"
