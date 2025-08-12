@@ -73,7 +73,7 @@ export const Leave = () => {
   return (
     <>
       <div className="relative">
-        <Titleheader label="Employee" />
+        <Titleheader label="Leave" />
         <div className="flex justify-end p-4 font-sans">
           <div className="relative pb-2">
             <button
